@@ -69,23 +69,23 @@
         }
     }
 
-    let blockClicks = false;
+    let blockClicks = false;  // Leblokkolom a klikkeket
     const cardClick = (ev) => {
         if (blockClicks) {
             return;
         }
 
         ev.currentTarget.classList.toggle('flipped');
-        const flippedCards = document.querySelectorAll('.card.flipped');
-        if (flippedCards.length > 1) {
+        const flippedCards = document.querySelectorAll('.card.flipped'); // Hány kártya van felfordítva: card és flipped oszt.
+        if (flippedCards.length > 1) {  // Több, mint 1 kártya meg van ford.
             blockClicks = true;
             const to = setTimeout( () => {
                 clearTimeout(to);
                 blockClicks = false;
                 document.querySelectorAll('.card').forEach( card => {
-                    card.classList.remove('flipped');
+                    card.classList.remove('flipped');   // Visszafordítás: Ha 2-nél több van felfordítva, az összeset visszafordítom.
                 });
-            }, 2000);
+            }, 2000); // 2mp után fordítom vissza a kártyákat, addig nem tudok újra kattintani.
 
             checkPair();
         }
